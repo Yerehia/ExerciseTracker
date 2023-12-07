@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: Exercise Tracker API
+  version: 1.0.0
+  description: Microservicio para realizar un seguimiento de ejercicios físicos.
+
+paths:
+  /ejercicios:
+    get:
+      summary: Obtener lista de ejercicios
+      responses:
+        '200':
+          description: Lista de ejercicios obtenida con éxito
+    post:
+      summary: Registrar ejercicio
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tipo:
+                  type: string
+                  description: Tipo de ejercicio
+                duracion:
+                  type: integer
+                  description: Duración del ejercicio en minutos
+                intensidad:
+                  type: string
+                  description: Intensidad del ejercicio
+      responses:
+        '201':
+          description: Ejercicio registrado con éxito
+
+  /estadisticas:
+    get:
+      summary: Obtener estadísticas de actividad
+      responses:
+        '200':
+          description: Estadísticas obtenidas con éxito
+
+  /ejercicios/{id}:
+    delete:
+      summary: Eliminar ejercicio
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID del ejercicio a eliminar
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Ejercicio eliminado con éxito
+        '404':
+          description: Ejercicio no encontrado
